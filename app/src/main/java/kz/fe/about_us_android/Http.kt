@@ -1,7 +1,11 @@
 package kz.fe.about_us_android
 
 import android.annotation.SuppressLint
+import android.os.Handler
 import android.util.Log
+import android.view.View
+import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.Gson
@@ -49,7 +53,30 @@ class Http(private var activity: AppCompatActivity) {
             @SuppressLint("CutPasteId", "SetTextI18n", "SimpleDateFormat")
             override fun onResponse(call: Call<String>, response: Response<String>) {
                 if (response.code() == 200) {
-                    Toast.makeText(activity, "Спасибо за отзыв", Toast.LENGTH_LONG).show()
+                    activity.findViewById<ImageView>(R.id.about_us_background).setImageResource(R.drawable.ok)
+                    activity.findViewById<ImageButton>(R.id.regular_customer).visibility = View.GONE
+                    activity.findViewById<ImageButton>(R.id.wholesale).visibility = View.GONE
+                    activity.findViewById<ImageButton>(R.id.recomendet).visibility = View.GONE
+                    activity.findViewById<ImageButton>(R.id.yandex).visibility = View.GONE
+                    activity.findViewById<ImageButton>(R.id.google).visibility = View.GONE
+                    activity.findViewById<ImageButton>(R.id.instagram).visibility = View.GONE
+                    activity.findViewById<ImageButton>(R.id.tikTok).visibility = View.GONE
+                    activity.findViewById<ImageButton>(R.id.youtube).visibility = View.GONE
+                    activity.findViewById<ImageButton>(R.id.twogis).visibility = View.GONE
+
+                    Handler().postDelayed({
+                        activity.findViewById<ImageView>(R.id.about_us_background).visibility = View.VISIBLE
+                        activity.findViewById<ImageView>(R.id.about_us_background).setImageResource(R.drawable.aboutus)
+                        activity.findViewById<ImageButton>(R.id.regular_customer).visibility = View.VISIBLE
+                        activity.findViewById<ImageButton>(R.id.wholesale).visibility = View.VISIBLE
+                        activity.findViewById<ImageButton>(R.id.recomendet).visibility = View.VISIBLE
+                        activity.findViewById<ImageButton>(R.id.yandex).visibility = View.VISIBLE
+                        activity.findViewById<ImageButton>(R.id.google).visibility = View.VISIBLE
+                        activity.findViewById<ImageButton>(R.id.instagram).visibility = View.VISIBLE
+                        activity.findViewById<ImageButton>(R.id.tikTok).visibility = View.VISIBLE
+                        activity.findViewById<ImageButton>(R.id.youtube).visibility = View.VISIBLE
+                        activity.findViewById<ImageButton>(R.id.twogis).visibility = View.VISIBLE
+                    }, 3000)
                 } else {
                     Toast.makeText(activity, response.code().toString(), Toast.LENGTH_LONG).show()
                 }
